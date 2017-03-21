@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SKVApp">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="SKV-EJB.jar" deploy-path="/" handle="module:/resource/SKV-EJB/SKV-EJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SKV-EJBClient.jar" deploy-path="/" handle="module:/resource/SKV-EJBClient/SKV-EJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SKV-Persistence.jar" deploy-path="/lib" handle="module:/resource/SKV-Persistence/SKV-Persistence">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SKV-DWP.war" deploy-path="/" handle="module:/resource/SKV-DWP/SKV-DWP">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
