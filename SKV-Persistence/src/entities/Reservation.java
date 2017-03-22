@@ -21,11 +21,11 @@ public class Reservation implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(targetEntity=Anvandare.class)
+	@ManyToOne(targetEntity=Anvandare.class, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="anv", referencedColumnName="id")
 	private Anvandare anvandare;
 	
-	@ManyToOne(targetEntity=Materiel.class)
+	@ManyToOne(targetEntity=Materiel.class, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="mat", referencedColumnName="id")
 	private Materiel materiel;
 	

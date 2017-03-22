@@ -24,6 +24,9 @@ public class MaterielTyp implements Serializable {
 	@Column(nullable=true)
 	private int standardLanetid;
 	
+	@Column(nullable=true)
+	private int maxLaneTid;
+	
 	@OneToMany(mappedBy="typ")
 	private List<Materiel> materiel;
 
@@ -51,6 +54,17 @@ public class MaterielTyp implements Serializable {
 	public void setStandardLanetid(int standardLanetid)
 	{
 		this.standardLanetid = standardLanetid;
+	}
+	
+	
+	public int getMaxLaneTid()
+	{
+		return maxLaneTid;
+	}
+
+	public void setMaxLaneTid(int maxLaneTid)
+	{
+		this.maxLaneTid = maxLaneTid;
 	}
 
 	public String getTyp()

@@ -24,7 +24,7 @@ public class Materiel implements Serializable
 	@OneToOne(mappedBy="mat", targetEntity=Lan.class)
 	private Lan lan;
 	
-	@OneToMany(mappedBy="materiel")
+	@OneToMany(mappedBy="materiel", cascade=CascadeType.PERSIST)
 	private List<Reservation> reservationer;
 	
 	@ManyToOne(targetEntity=MaterielTyp.class)

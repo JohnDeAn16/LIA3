@@ -21,7 +21,7 @@ public class Anvandare implements Serializable
 	private int id;
 	private String email;
 	
-	@OneToMany(mappedBy="anv", targetEntity=Lan.class, cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy="anv", targetEntity=Lan.class, cascade=CascadeType.ALL)
 	private List<Lan> lan;
 	
 	@OneToMany(mappedBy="anvandare", targetEntity=Reservation.class, cascade=CascadeType.PERSIST)

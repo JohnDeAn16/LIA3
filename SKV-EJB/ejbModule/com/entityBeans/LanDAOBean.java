@@ -36,10 +36,16 @@ public class LanDAOBean implements LanDAOBeanRemote
 	@Override
 	public Lan getLan(int anvId, int matId)
 	{
-		Query q = em.createQuery("SELECT e FROM Lan e WHERE anvandarId = :anvId AND materielId = :matId");
+		Query q = em.createQuery("SELECT e FROM Lan e WHERE e.anv.id = :anvId AND e.mat.id = :matId");
 		q.setParameter("anvId", anvId);
 		q.setParameter("matId", matId);
 		return (Lan)q.getSingleResult();
+	}
+	
+	public void deleteLan(Lan l)
+	{
+		Lan lan = this.getLan(l.getAnv().getId(), l.getMat().getId());
+		em.remove(lan);
 	}
 
 }

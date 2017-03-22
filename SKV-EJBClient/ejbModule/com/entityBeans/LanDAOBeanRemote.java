@@ -9,4 +9,5 @@ public interface LanDAOBeanRemote
 {
 	public void addLan(Lan e);
 	public Lan getLan(int anvId, int matId);
+	public void deleteLan(Lan l);
 }

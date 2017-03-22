@@ -23,7 +23,7 @@ public class Lan implements Serializable
 	@JoinColumn(name="anvLan", referencedColumnName="id")
 	private Anvandare anv;
 	
-	@OneToOne(targetEntity=Materiel.class)
+	@OneToOne(targetEntity=Materiel.class, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="matLan", referencedColumnName="id")
 	private Materiel mat;
 	private Date utlaningsDatum;
