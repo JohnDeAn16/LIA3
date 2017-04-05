@@ -20,8 +20,9 @@ public class Anvandare implements Serializable
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String email;
+	private String pass;
 	
-	@OneToMany(mappedBy="anv", targetEntity=Lan.class, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="anv", targetEntity=Lan.class, cascade=CascadeType.PERSIST)
 	private List<Lan> lan;
 	
 	@OneToMany(mappedBy="anvandare", targetEntity=Reservation.class, cascade=CascadeType.PERSIST)
@@ -50,6 +51,16 @@ public class Anvandare implements Serializable
 	public void setEmail(String email)
 	{
 		this.email = email;
+	}
+
+	public String getPass()
+	{
+		return pass;
+	}
+
+	public void setPass(String pass)
+	{
+		this.pass = pass;
 	}
 
 	public List<Lan> getLan()

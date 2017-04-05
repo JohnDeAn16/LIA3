@@ -29,22 +29,21 @@ public class LanDAOBean implements LanDAOBeanRemote
 	@Override
 	public void addLan(Lan e)
 	{
-		//TODO fixa persist/merge med komposition/foreign nyckel
+		//TODO fixa persist/merge
 		em.merge(e);
 	}
 
 	@Override
-	public Lan getLan(int anvId, int matId)
+	public Lan getLan(int id)
 	{
-		Query q = em.createQuery("SELECT e FROM Lan e WHERE e.anv.id = :anvId AND e.mat.id = :matId");
-		q.setParameter("anvId", anvId);
-		q.setParameter("matId", matId);
+		Query q = em.createQuery("SELECT e FROM Lan e WHERE e.id = :id");
+		q.setParameter("id", id);
 		return (Lan)q.getSingleResult();
 	}
 	
 	public void deleteLan(Lan l)
 	{
-		Lan lan = this.getLan(l.getAnv().getId(), l.getMat().getId());
+		Lan lan = this.getLan(l.getId());
 		em.remove(lan);
 	}
 

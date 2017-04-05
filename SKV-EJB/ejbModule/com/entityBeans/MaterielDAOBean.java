@@ -1,5 +1,8 @@
 package com.entityBeans;
 
+import java.util.List;
+
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,15 +16,17 @@ import entities.Materiel;
  * Session Bean implementation class MaterielDAOBean
  */
 @Stateless
-@Named
-public class MaterielDAOBean implements MaterielDAOBeanRemote {
+//@Named
+@LocalBean
+public class MaterielDAOBean implements MaterielDAOBeanRemote 
+{
 
 	@PersistenceContext(unitName="SKV-Persistence")
 	EntityManager em;
     /**
      * Default constructor. 
      */
-	@Inject
+	//@Inject
     public MaterielDAOBean() 
     {
         // TODO Auto-generated constructor stub
@@ -56,6 +61,14 @@ public class MaterielDAOBean implements MaterielDAOBeanRemote {
 		Query q = em.createQuery("SELECT e FROM Materiel e WHERE e.name = :name");
 		q.setParameter("name", name);
 		return (Materiel)q.getSingleResult();
+	}
+	
+	@Override
+	public List<Materiel> getAllMateriel()
+	{
+		Query q = em.createQuery("SELECT e FROM Materiel e");
+		return (List<Materiel>) q.getResultList();
+		
 	}
 	
 	

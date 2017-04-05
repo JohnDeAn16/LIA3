@@ -57,6 +57,7 @@ public class Lan implements Serializable
 	public void setAnv(Anvandare anv)
 	{
 		this.anv = anv;
+		anv.addLan(this);
 	}
 
 
@@ -69,6 +70,7 @@ public class Lan implements Serializable
 	public void setMat(Materiel mat)
 	{
 		this.mat = mat;
+		mat.setLan(this);
 	}
 
 

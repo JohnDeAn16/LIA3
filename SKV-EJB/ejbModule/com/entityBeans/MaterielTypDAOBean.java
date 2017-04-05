@@ -2,6 +2,8 @@ package com.entityBeans;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,12 +14,15 @@ import entities.MaterielTyp;
  * Session Bean implementation class MaterielTypDAOBean
  */
 @Stateless
-@LocalBean
-public class MaterielTypDAOBean implements MaterielTypDAOBeanRemote {
+@Named
+//@LocalBean
+public class MaterielTypDAOBean implements MaterielTypDAOBeanRemote 
+{
 
 	@PersistenceContext(unitName="SKV-Persistence")
 	EntityManager em;
 	
+	@Inject
     public MaterielTypDAOBean() 
     {
     }

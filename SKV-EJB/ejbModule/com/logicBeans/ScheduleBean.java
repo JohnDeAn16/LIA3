@@ -62,8 +62,8 @@ public class ScheduleBean implements ScheduleBeanRemote
     
     public boolean lengthIsValid(Materiel m, Date from, Date to)
     {
-    	int diff = (int)(to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24);
-    	return diff < m.getTyp().getMaxLaneTid();
+    	long diff = (to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24);
+    	return (int)diff <= m.getTyp().getMaxLaneTid();
     }
     
     public Date stringToDate(String s)

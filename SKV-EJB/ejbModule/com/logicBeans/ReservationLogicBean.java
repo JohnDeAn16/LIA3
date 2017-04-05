@@ -5,6 +5,9 @@ import java.sql.Date;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import com.exceptions.ErrorCode;
+import com.exceptions.LibException;
+
 import entities.Anvandare;
 import entities.Materiel;
 import entities.Reservation;
@@ -25,7 +28,7 @@ public class ReservationLogicBean extends TransactionLogicBean implements Reserv
         super();
     }
     
-    public Reservation makeReservation(Anvandare a, Materiel m, String from, String to)
+    public Reservation makeReservation(Anvandare a, Materiel m, String from, String to) throws LibException
     {
     	Reservation r = new Reservation();
     	Date out = sBean.stringToDate(from);
@@ -38,6 +41,10 @@ public class ReservationLogicBean extends TransactionLogicBean implements Reserv
     		r.setReserveradFran(out);
     		r.setReserveradTill(in);
     		r.setReservationsDatum(sBean.getDate());
+    	}
+    	else
+    	{
+    		throw new LibException(ErrorCode.LOAN_ERROR, "Materiel ar ej tillganglig under hela perioden eller kan ej utlanas sa lange");
     	}
     	return r;
     }

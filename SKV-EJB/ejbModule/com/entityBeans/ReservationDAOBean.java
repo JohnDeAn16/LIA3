@@ -46,5 +46,12 @@ public class ReservationDAOBean implements ReservationDAOBeanRemote
 		q.setParameter("id", id);
 		return (Reservation)q.getSingleResult();
 	}
+	
+	@Override
+	public void deleteReservation(Reservation r)
+	{
+		Reservation res = this.getReservation(r.getId());
+		em.remove(res);
+	}
 
 }

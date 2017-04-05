@@ -44,5 +44,22 @@ public class AnvandareDAOBean implements AnvandareDAOBeanRemote {
     	
     	return (Anvandare)q.getSingleResult();
     }
+    
+    public Anvandare getAnvByLogin(String mail, String pass)
+    {
+    	Query q = em.createQuery("SELECT e FROM Anvandare e WHERE e.email = :mail AND e.pass = :pass");
+    	q.setParameter("mail", mail);
+    	q.setParameter("pass", pass);
+    	
+    	return (Anvandare)q.getSingleResult();
+    }
+
+	@Override
+	public Anvandare getAnvandareByMail(String mail)
+	{
+		Query q = em.createQuery("SELECT e FROM Anvandare e WHERE e.email = :mail");
+		q.setParameter("mail", mail);
+		return (Anvandare)q.getSingleResult();
+	}
 
 }
