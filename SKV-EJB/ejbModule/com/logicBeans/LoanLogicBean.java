@@ -32,7 +32,7 @@ public class LoanLogicBean extends TransactionLogicBean implements LoanLogicBean
     public Lan makeLoan(Anvandare a, Materiel m, String to) throws LibException
     {
     	Lan l = new Lan();
-    	if(m.isArTillganglig())//TODO Exception
+    	if(m.isArTillganglig())
     	{
         	Date out = sBean.getDate();	
     		Date in = this.getHandinDate(m, out, to);

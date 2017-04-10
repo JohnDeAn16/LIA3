@@ -11,6 +11,9 @@ import javax.jms.QueueSession;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.exceptions.LibException;
+import com.logicBeans.LoginBeanRemote;
+import com.logicBeans.MessageHandlerBeanRemote;
 import com.messageBeans.MessageContainerBean;
 import com.messageBeans.MessageContainerBeanRemote;
 
@@ -26,6 +29,8 @@ public class userSessionBean implements userSessionBeanRemote
 
 	Anvandare anv;
 	InitialContext ctx;
+	LoginBeanRemote lBean;
+	MessageHandlerBeanRemote mBean;
 	
     public userSessionBean() 
     {
@@ -33,6 +38,8 @@ public class userSessionBean implements userSessionBeanRemote
     	try
     	{
     		ctx = new InitialContext();
+    		lBean = (LoginBeanRemote)ctx.lookup("java:global/SKVApp/SKV-EJB/LoginBean!com.logicBeans.LoginBean");
+    		mBean = (MessageHandlerBeanRemote)ctx.lookup("java:global/SKVApp/SKV-EJB/MessageHandlerBean!com.logicBeans.MessagehandlerBean");
     	}
     	catch(NamingException e)
     	{
@@ -40,24 +47,30 @@ public class userSessionBean implements userSessionBeanRemote
     	}
     }
     
-    public void sendMessage(MessageContainerBeanRemote msg)
+    public void login(String email, String pass)
     {
     	try
 		{
-			Queue queue = (Queue)ctx.lookup("queue/messageQueue");
-			QueueConnectionFactory factory = (QueueConnectionFactory)ctx.lookup("ConnectionFactory");
-			QueueConnection connection = factory.createQueueConnection();
-			QueueSession session = connection.createQueueSession(false,  QueueSession.AUTO_ACKNOWLEDGE);
-			QueueSender sender = session.createSender(queue);
-			ObjectMessage objMsg = session.createObjectMessage(msg);
-			sender.send(objMsg);
-			
+			anv = lBean.login(email, pass);
 		}
-		catch (Exception e)
+		catch (LibException e)
 		{
-
-			
+			//TODO
 		}
     }
+    
+    public void sendMessage(MessageContainerBeanRemote msg)
+    {
+    	try
+    	{
+    		anv = mBean.handleMessage(msg);
+    	}
+    	catch(LibException e)
+    	{
+    		//TODO
+    	}
+    }
+    
+    //TODO view logic?
 
 }
