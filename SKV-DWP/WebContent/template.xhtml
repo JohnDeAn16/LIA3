@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" 
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<h:outputStylesheet name="css/layout.css" />
+	<h:outputStylesheet name="css/font-awesome.css" />
+	<title><ui:insert name="title" /></title>
+</h:head>
+
+<h:body style="padding: 60px;">
+	<b:navBar brand="WebbTest" brandHref="index.xhtml" fixed="top"
+		sticky="true" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Startsida" href="#index"></b:navLink>
+			<b:dropMenu value="Bibliotek">
+				<b:navLink value="Böcker  " href="viewBooks.xhtml">
+					<span class="fa fa-book"></span>
+				</b:navLink>
+				<b:navLink value="Övrigt material  " href="#">
+					<span class="fa fa-hdd-o"></span>
+				</b:navLink>
+			</b:dropMenu>
+		</b:navbarLinks>
+		<h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs"
+			role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Sök..." />
+			</div>
+			<button type="submit" class="btn btn-default">Sök</button>
+		</h:form>
+		<!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+		<b:navbarLinks pull="right">
+			<b:navLink value="    " href="#"></b:navLink>
+		</b:navbarLinks>
+		<b:navbarLinks pull="right" styleClass="hidden-xs">
+			<b:navLink value="Logga ut" href="#">
+			<i class="fa fa-key" />
+			</b:navLink>
+			
+		</b:navbarLinks>
+	</b:navBar>
+	<b:container>
+
+		<h1>BootsFaces Template</h1>
+		
+	</b:container>
+
+
+	<div id="content" class="container-fluid">
+		<ui:insert name="content">Content</ui:insert>
+	</div>
+
+	<div id="bottom">
+		<ui:insert name="bottom"></ui:insert>
+	</div>
+
+
+
+</h:body>
+</html>

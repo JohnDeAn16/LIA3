@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<h:outputStylesheet name="css/layout.css" />
+	<h:outputStylesheet name="css/font-awesome.css" />
+	<title><ui:insert name="title" /> Böcker</title>
+</h:head>
+<h:body>
+
+
+
+	<div class="container">
+		<h2>Böcker</h2>
+
+		<p:dataTable id="checkboxDT" var="book"
+			value="#{dtSelectionView.cars6}"
+			selection="#{dtSelectionView.selectedCars}" rowKey="#{book.id}"
+			style="margin-bottom:0">
+			<f:facet name="header">
+            Checkbox
+        </f:facet>
+			<p:column selectionMode="multiple"
+				style="width:16px;text-align:center" />
+			<p:column headerText="Id">
+				<h:outputText value="#{book.id}" />
+			</p:column>
+			<p:column headerText="Author">
+				<h:outputText value="#{book.autjor}" />
+			</p:column>
+			<p:column headerText="Title">
+				<h:outputText value="#{book.title}" />
+			</p:column>
+			<p:column headerText="Isbn">
+				<h:outputText value="#{book.isbn}" />
+			</p:column>
+			<f:facet name="footer">
+				<p:commandButton process="checkboxDT" update=":form:multiCarDetail"
+					icon="ui-icon-search" value="View"
+					oncomplete="PF('multiCarDialog').show()" />
+			</f:facet>
+		</p:dataTable>
+
+
+		<p:dialog header="Book Info" widgetVar="bookDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="bookDetail" style="text-align:center;">
+				<p:panelGrid columns="2"
+					rendered="#{not empty dtSelectionView.selectedCar}"
+					columnClasses="label,value">
+					<f:facet name="header">
+						<p:graphicImage
+							name="demo/images/car/#{dtSelectionView.selectedCar.brand}-big.gif" />
+					</f:facet>
+
+					<h:outputText value="Id:" />
+					<h:outputText value="#{dtSelectionView.selectedCar.id}" />
+
+					<h:outputText value="Year" />
+					<h:outputText value="#{dtSelectionView.selectedCar.year}" />
+
+					<h:outputText value="Color:" />
+					<h:outputText value="#{dtSelectionView.selectedCar.color}"
+						style="color:#{dtSelectionView.selectedCar.color}" />
+
+					<h:outputText value="Price" />
+					<h:outputText value="$#{dtSelectionView.selectedCar.price}" />
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+
+		<p:dialog header="Selected Cars" widgetVar="multiCarDialog"
+			modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+			width="200">
+			<p:outputPanel id="multiCarDetail" style="text-align:center;">
+				<ui:repeat value="#{dtSelectionView.selectedCars}" var="car">
+					<h:outputText value="#{car.id} - #{car.brand}"
+						style="display:block" />
+				</ui:repeat>
+			</p:outputPanel>
+		</p:dialog>
+
+	</div>
+
+
+
+</h:body>
+
+</html>
