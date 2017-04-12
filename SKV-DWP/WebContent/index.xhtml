@@ -25,14 +25,14 @@
 			<b:panelGrid columns="2" colSpans="2,10"
 				columnClasses="form-label,form-input" footerClass="form-footer">
 				<h:outputLabel value="Användarnamn" for="email" />
-				<b:inputText id="email" value="#{userRef.email}">
+				<b:inputText id="email" value="#{}">
 					<f:facet name="prepend">
 						<i class="fa fa-user" />
 					</f:facet>
 				</b:inputText>
 
 				<h:outputLabel value="Lösenord" for="password" />
-				<b:inputSecret id="password" value="#{userRef.password}">
+				<b:inputSecret id="password" value="#{}">
 					<f:facet name="prepend">
 						<i class="fa fa-key" />
 					</f:facet>
@@ -41,7 +41,7 @@
 
 			</b:panelGrid>
 			<div align="center">
-				<h:commandLink id="loginButton" action="#{login.login}"
+				<h:commandLink id="loginButton" action="#{}"
 					styleClass="btn btn-default">
 					<span class="glyphicon glyphicon-log-in" ></span>  Logga in
 				</h:commandLink>
