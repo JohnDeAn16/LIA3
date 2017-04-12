@@ -1,57 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-	<ui:composition template="./template.xhtml">
-		<ui:define name="title">Login</ui:define>
-		<ui:define name="content">
-			<div class="container">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header" style="padding: 35px 50px;">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4>
-							<span class="glyphicon glyphicon-lock"></span> Ny användare
-						</h4>
-					</div>
-					<div class="modal-body" style="padding: 40px 50px;">
-						<form role="form">
-							<div class="form-group">
-								<label for="username"><span
-									class="glyphicon glyphicon-user"></span> Användarnamn</label> <h:inputText
-									type="text" class="form-control" id="username"
-									placeholder="Enter email" />
-							</div>
-							<div class="form-group">
-								<label for="password"><span
-									class="glyphicon glyphicon-eye-open"></span> Lösenord</label> <h:inputText
-									type="text" class="form-control" id="password"
-									placeholder="Enter password" />
-									
-							</div>
-							<button type="submit" class="btn btn-custom btn-block">
-								<span class="glyphicon glyphicon-off"></span> Skapa ny användare
-							</button>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-danger btn-default pull-left"
-							data-dismiss="modal">
-							<span class="glyphicon glyphicon-remove"></span> Cancel
-						</button>
-					</div>
-				</div>
 
-			</div>
+<h:form>
+    <b:panelGrid columns="2" colSpans="2,10"
+				columnClasses="form-label,form-input" footerClass="form-footer">
+				<h:outputLabel value="Användarnamn" for="email" />
+				<p:inputText id="email" value="#">
+					<f:facet name="prepend">
+						<i class="fa fa-user" />
+					</f:facet>
+				</p:inputText>
+
+				<h:outputLabel value="Lösenord" for="password" />
+				<p:password id="password" value="#">
+					<f:facet name="prepend">
+						<i class="fa fa-key" />
+					</f:facet>
+				</p:password>
 
 
-
-
-		</ui:define>
-	</ui:composition>
+			</b:panelGrid>
+       
+	<p:commandButton value="Skapa användare" id="ajax" 
+		actionListener="#"
+		styleClass="ui-priority-primary" />
+	
+		</h:form>
 </h:body>
 </html>
