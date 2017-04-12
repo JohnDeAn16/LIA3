@@ -14,83 +14,89 @@
 	<title><ui:insert name="title" /> Böcker</title>
 </h:head>
 <h:body>
-
+	<ui:composition template="./template.xhtml">
+		<ui:define name="title">Böcker</ui:define>
+		<ui:define name="content">
 
 
 	<div class="container">
-		<h2>Böcker</h2>
+		<h2>Bokhylla</h2>
 
-		<p:dataTable id="checkboxDT" var="book"
-			value="#{dtSelectionView.cars6}"
-			selection="#{dtSelectionView.selectedCars}" rowKey="#{book.id}"
-			style="margin-bottom:0">
-			<f:facet name="header">
-            Checkbox
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable id="böckerDT" var="book"
+				value="#{bookDAOBean.book1}"
+				selection="#{bookDAOBean.selectedBooks}" rowKey="#{book.id}"
+				style="margin-bottom:0">
+				<f:facet name="header">
+            Böcker
         </f:facet>
-			<p:column selectionMode="multiple"
-				style="width:16px;text-align:center" />
-			<p:column headerText="Id">
-				<h:outputText value="#{book.id}" />
-			</p:column>
-			<p:column headerText="Author">
-				<h:outputText value="#{book.autjor}" />
-			</p:column>
-			<p:column headerText="Title">
-				<h:outputText value="#{book.title}" />
-			</p:column>
-			<p:column headerText="Isbn">
-				<h:outputText value="#{book.isbn}" />
-			</p:column>
-			<f:facet name="footer">
-				<p:commandButton process="checkboxDT" update=":form:multiCarDetail"
-					icon="ui-icon-search" value="View"
-					oncomplete="PF('multiCarDialog').show()" />
-			</f:facet>
-		</p:dataTable>
+				<p:column selectionMode="multiple"
+					style="width:16px;text-align:center" />
+				<p:column headerText="Id">
+					<h:outputText value="#{book.id}" />
+				</p:column>
+				<p:column headerText="Author">
+					<h:outputText value="#{book.author}" />
+				</p:column>
+				<p:column headerText="Title">
+					<h:outputText value="#{book.title}" />
+				</p:column>
+				<p:column headerText="Isbn">
+					<h:outputText value="#{book.isbn}" />
+				</p:column>
+				<p:column headerText="Copies">
+					<h:outputText value="#{book.copies}" />
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton process="böckerDT" update=":form:multiBookDetail"
+						icon="fa fa-book" value="Låna"
+						actionListener="#{bookDAOBean.addBook()}" />
+				</f:facet>
+			</p:dataTable>
 
 
-		<p:dialog header="Book Info" widgetVar="bookDialog" modal="true"
-			showEffect="fade" hideEffect="fade" resizable="false">
-			<p:outputPanel id="bookDetail" style="text-align:center;">
-				<p:panelGrid columns="2"
-					rendered="#{not empty dtSelectionView.selectedCar}"
-					columnClasses="label,value">
-					<f:facet name="header">
-						<p:graphicImage
-							name="demo/images/car/#{dtSelectionView.selectedCar.brand}-big.gif" />
-					</f:facet>
+			<p:dialog header="Book Info" widgetVar="bookDialog" modal="true"
+				showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="bookDetail" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty bookDAOBean.selectedBook}"
+						columnClasses="label,value">
+						<f:facet name="header">
+							<p:graphicImage
+								name="" />
+						</f:facet>
 
-					<h:outputText value="Id:" />
-					<h:outputText value="#{dtSelectionView.selectedCar.id}" />
+						<h:outputText value="Id:" />
+						<h:outputText value="#{bookDAOBean.selectedBook.id}" />
 
-					<h:outputText value="Year" />
-					<h:outputText value="#{dtSelectionView.selectedCar.year}" />
+						<h:outputText value="Author" />
+						<h:outputText value="#{bookDAOBean.selectedBook.author}" />
 
-					<h:outputText value="Color:" />
-					<h:outputText value="#{dtSelectionView.selectedCar.color}"
-						style="color:#{dtSelectionView.selectedCar.color}" />
+						<h:outputText value="Title:" />
+						<h:outputText value="#{bookDAOBean.selectedBook.title}" />
 
-					<h:outputText value="Price" />
-					<h:outputText value="$#{dtSelectionView.selectedCar.price}" />
-				</p:panelGrid>
-			</p:outputPanel>
-		</p:dialog>
+						<h:outputText value="Isbn" />
+						<h:outputText value="#{bookDAOBean.selectedBook.isbn}" />
+						
+						<h:outputText value="Copies" />
+						<h:outputText value="#{bookDAOBean.selectedBook.copies}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
 
-		<p:dialog header="Selected Cars" widgetVar="multiCarDialog"
-			modal="true" showEffect="fade" hideEffect="fade" resizable="false"
-			width="200">
-			<p:outputPanel id="multiCarDetail" style="text-align:center;">
-				<ui:repeat value="#{dtSelectionView.selectedCars}" var="car">
-					<h:outputText value="#{car.id} - #{car.brand}"
-						style="display:block" />
-				</ui:repeat>
-			</p:outputPanel>
-		</p:dialog>
-
+			<p:dialog header="Selected Books" widgetVar="multiBookDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+				width="200">
+				<p:outputPanel id="multiBookDetail" style="text-align:center;">
+					
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
 	</div>
 
-
-
+</ui:define>
+</ui:composition>
 </h:body>
 
 </html>
